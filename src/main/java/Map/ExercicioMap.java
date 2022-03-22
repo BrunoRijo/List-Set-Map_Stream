@@ -2,8 +2,6 @@ package Map;
 
 import java.util.*;
 
-//Streams são formas simplificadas de manipulação de collections.
-//Utilizando conceitos de Lambda, Classe anônima, Reference Method
 public class ExercicioMap {
 
 /*
