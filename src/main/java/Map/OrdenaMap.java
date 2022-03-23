@@ -42,7 +42,9 @@ public class OrdenaMap {
 
         System.out.println(" -- Ordem alfabética dos livros");
         // Livros estão no valor do map, então precisamos ir pelo values()
-        Set<Map.Entry<String, Livro>> meusLivros3= new TreeSet<>(new Map.Livro.ComparatorNome());
+        Set<Map.Entry<String, Livro>> meusLivros3= new TreeSet<>(
+                Comparator.comparing(nome -> nome.getValue().getNome())
+        );
         meusLivros3.addAll(meusLivros.entrySet());
         System.out.println(meusLivros3);
         for(Map.Entry<String, Livro> livro: meusLivros3){
