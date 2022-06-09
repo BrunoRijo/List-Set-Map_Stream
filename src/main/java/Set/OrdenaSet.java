@@ -10,8 +10,6 @@ Série 2: Akame Ga Kill, Shounen, 24
 Série 3: Boku no Hero, Ação, 96
 */
 
-
-
 public class OrdenaSet {
 
     public static void main(String[] args) {
@@ -30,6 +28,12 @@ public class OrdenaSet {
         Set<Animacao> minhasAnimacoes2 = new TreeSet<>(minhasAnimacoes);
         for (Animacao an2: minhasAnimacoes2) System.out.println(an2.getNome()
                 + " - " + an2.getGenero() + " - " + an2.getTempoEpisodio());
+
+        System.out.println("Ordem Nome/Genero/Tempo");
+        Set<Animacao> minhaAnimacoes3 = new TreeSet<>(new ComparatorNomeGeneroTempo());
+        minhaAnimacoes3.addAll(minhasAnimacoes);
+        for (Animacao an3: minhaAnimacoes3) System.out.println(an3.getNome()
+                + " - " + an3.getGenero() + " - " + an3.getTempoEpisodio());
     }
 }
 
@@ -98,3 +102,17 @@ class Animacao implements Comparable<Animacao> {
         return this.getGenero().compareTo(o.getGenero());
     }
 }
+class ComparatorNomeGeneroTempo implements Comparator<Animacao>{
+
+    @Override
+    public int compare(Animacao o1, Animacao o2) {
+        int nome = o1.getNome().compareTo(o2.getNome());
+        if (nome != 0) return nome;
+
+        int genero = o1.getGenero().compareTo(o2.getGenero());
+        if (genero != 0) return genero;
+
+        return Integer.compare(o1.getTempoEpisodio(), o2.getTempoEpisodio());
+    }
+}
+
