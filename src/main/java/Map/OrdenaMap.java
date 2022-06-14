@@ -42,13 +42,17 @@ public class OrdenaMap {
 
         System.out.println(" -- Ordem alfabética dos livros");
         // Livros estão no valor do map, então precisamos ir pelo values()
-        Set<Map.Entry<String, Livro>> meusLivros3= new TreeSet<>(
-                Comparator.comparing(nome -> nome.getValue().getNome())
-        );
+        Set<Map.Entry<String, Livro>> meusLivros3= new TreeSet<>( new Livro.ComparatorNome());
         meusLivros3.addAll(meusLivros.entrySet());
-        System.out.println(meusLivros3);
         for(Map.Entry<String, Livro> livro: meusLivros3){
             System.out.println(livro.getKey() + " - " + livro.getValue().getNome());
+        }
+
+        System.out.println(" -- Ordem por numero de páginas: ");
+        Set<Map.Entry<String, Livro>> meusLivros4 =  new TreeSet<>( new ComparatorPaginas());
+        meusLivros4.addAll(meusLivros.entrySet());
+        for (Map.Entry<String, Livro> livro : meusLivros4 ){
+            System.out.println(livro.getKey() +" - "+ livro.getValue().getPaginas() + " páginas");
         }
     }
 }
@@ -104,5 +108,13 @@ class Livro{
         public int compare(Map.Entry<String, Livro> l1, Map.Entry<String, Livro> l2) {
             return l1.getValue().getNome().compareTo(l2.getValue().getNome());
         }
+    }
+}
+
+class ComparatorPaginas implements Comparator<Map.Entry<String, Livro>>{
+
+    @Override
+    public int compare(Map.Entry<String, Livro> o1, Map.Entry<String, Livro> o2) {
+        return Integer.compare(o1.getValue().getPaginas(), o2.getValue().getPaginas());
     }
 }
