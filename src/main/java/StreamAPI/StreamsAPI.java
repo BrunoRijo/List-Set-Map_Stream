@@ -63,8 +63,10 @@ id = 3 - Contato = nome: Jon, numero: 1111;
 
         //Modo numero 3: Utilizando Lambda
         //Lambdas utilizam o modelo (argumento) -> (corpo)
-        Set<Map.Entry<Integer, Contato>> set = new TreeSet<>(Comparator.comparing(
-                        cont -> cont.getValue().getNumero()));
+        Set<Map.Entry<Integer, Contato>> set =
+                new TreeSet<>(Comparator.comparing(
+                        cont -> cont.getValue().getNumero()
+                ));
         set.addAll(agenda.entrySet());
         for (Map.Entry<Integer, Contato> entry: set){
             System.out.println(entry.getKey() + " - " + entry.getValue().getNome() + " - " + entry.getValue().getNumero());
@@ -79,9 +81,19 @@ id = 3 - Contato = nome: Jon, numero: 1111;
             }
         });*/
 
+//        Método 2: Utilizando classe anonima Comparator e o método abstrato Comparing
+/*        Set<Map.Entry<String, Contato>> set2 = new TreeSet<>(Comparator.comparing(
+                new Function<Map.Entry<String, Contato>, String>() {
+                    @Override
+                    public String apply(Map.Entry<String, Contato> contato) {
+                        return contato.getValue().getNome();
+                    }
+                }));*/
 
-
-
+//        Método 3: Utilizando lambda
+        Set<Map.Entry<String, Contato>> set2 =
+                new TreeSet<>(Comparator.comparing(
+                    contato -> contato.getValue().getNome()));
     }
 }
 
